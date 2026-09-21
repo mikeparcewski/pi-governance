@@ -1,0 +1,31 @@
+{
+	"name": "pi-governance",
+	"version": "0.1.0",
+	"description": "A governable ACP adapter for the pi CLI: every tool call is a session/request_permission round-trip before it executes.",
+	"license": "MIT",
+	"type": "module",
+	"bin": {
+		"pi-governance": "dist/cli.js"
+	},
+	"files": [
+		"dist",
+		"README.md",
+		"LICENSE"
+	],
+	"scripts": {
+		"build": "tsc -p tsconfig.json",
+		"typecheck": "tsc -p tsconfig.json --noEmit",
+		"capture": "npm run build && node capture/capture.mjs"
+	},
+	"dependencies": {
+		"@zed-industries/agent-client-protocol": "0.4.5"
+	},
+	"devDependencies": {
+		"@earendil-works/pi-coding-agent": "0.84.2",
+		"@types/node": "^24.0.0",
+		"typescript": "5.9.3"
+	},
+	"engines": {
+		"node": ">=20"
+	}
+}
