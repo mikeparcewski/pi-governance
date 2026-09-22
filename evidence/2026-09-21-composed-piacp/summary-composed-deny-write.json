@@ -1,0 +1,150 @@
+{
+	"capturedAt": "2026-09-22T02:32:48.403Z",
+	"pi": "0.84.2",
+	"piPath": "/opt/homebrew/bin/pi",
+	"carrier": "pi-acp@0.0.32",
+	"extension": "<PI-GOVERNANCE-CHECKOUT>/dist/extension.js",
+	"piGovernanceCommit": "e1061f932de99943ebf566f5ca438c145df0ef9d",
+	"shim": "<CAPTURE-WORKDIR>/bridges/wicked-pi.mjs",
+	"node": "v26.0.0",
+	"platform": "darwin arm64",
+	"checks": [
+		{
+			"scenario": "composed-deny-write",
+			"id": "capture-is-non-empty",
+			"ok": true,
+			"detail": "records=33 methods=26"
+		},
+		{
+			"scenario": "composed-deny-write",
+			"id": "prompt-completed",
+			"ok": true,
+			"detail": "stopReason=end_turn error=none"
+		},
+		{
+			"scenario": "composed-deny-write",
+			"id": "no-undecodable-permission-requests",
+			"ok": true,
+			"detail": "[]"
+		},
+		{
+			"scenario": "composed-deny-write",
+			"id": "read-requests-permission",
+			"ok": false,
+			"detail": "request@10 firstExecutionSignal@9"
+		},
+		{
+			"scenario": "composed-deny-write",
+			"id": "bash-requests-permission",
+			"ok": false,
+			"detail": "request@15 firstExecutionSignal@14"
+		},
+		{
+			"scenario": "composed-deny-write",
+			"id": "edit-requests-permission",
+			"ok": false,
+			"detail": "request@22 firstExecutionSignal@21"
+		},
+		{
+			"scenario": "composed-deny-write",
+			"id": "write-requests-permission",
+			"ok": true,
+			"detail": "request@25 firstExecutionSignal@27"
+		},
+		{
+			"scenario": "composed-deny-write",
+			"id": "write-in-progress-only-after-permission-response",
+			"ok": false,
+			"detail": "request@25 answer@28 in_progress@[27]"
+		},
+		{
+			"scenario": "composed-deny-write",
+			"id": "four-permission-requests",
+			"ok": true,
+			"detail": "requests=4"
+		},
+		{
+			"scenario": "composed-deny-write",
+			"id": "disk-target.txt",
+			"ok": true,
+			"detail": "on disk: \"EDITED line under governance\\n\""
+		},
+		{
+			"scenario": "composed-deny-write",
+			"id": "disk-written.txt",
+			"ok": true,
+			"detail": "on disk: null"
+		},
+		{
+			"scenario": "composed-deny-write",
+			"id": "denial-visible-on-the-wire",
+			"ok": true,
+			"detail": "record seq=28 optionId=choice-1"
+		}
+	],
+	"scenarios": [
+		{
+			"name": "composed-deny-write",
+			"stopReason": "end_turn",
+			"error": null,
+			"records": 33,
+			"maxInFlightPermissions": 1,
+			"permissionRequests": [
+				{
+					"uiToolCallId": "pi-ui-5aa2a683-3689-4ec3-bd8b-fda8af38bd8a",
+					"piToolCallId": "scripted-0-read",
+					"toolName": "read",
+					"path": "target.txt",
+					"answeredName": "allow-once",
+					"answeredOptionId": "choice-0",
+					"offered": [
+						"choice-0:allow-once:allow_once",
+						"choice-1:reject-once:allow_once"
+					]
+				},
+				{
+					"uiToolCallId": "pi-ui-571135de-6a35-41da-b8e4-276cd5e8d54b",
+					"piToolCallId": "scripted-1-bash",
+					"toolName": "bash",
+					"path": "echo hello-from-bash",
+					"answeredName": "allow-once",
+					"answeredOptionId": "choice-0",
+					"offered": [
+						"choice-0:allow-once:allow_once",
+						"choice-1:reject-once:allow_once"
+					]
+				},
+				{
+					"uiToolCallId": "pi-ui-d752e9c6-5b8b-45cc-9f94-a3b1bfdea945",
+					"piToolCallId": "scripted-2-edit",
+					"toolName": "edit",
+					"path": "target.txt",
+					"answeredName": "allow-once",
+					"answeredOptionId": "choice-0",
+					"offered": [
+						"choice-0:allow-once:allow_once",
+						"choice-1:reject-once:allow_once"
+					]
+				},
+				{
+					"uiToolCallId": "pi-ui-9e53ed59-78be-4356-9d0e-886b8493cc25",
+					"piToolCallId": "scripted-3-write",
+					"toolName": "write",
+					"path": "written.txt",
+					"answeredName": "reject-once",
+					"answeredOptionId": "choice-1",
+					"offered": [
+						"choice-0:allow-once:allow_once",
+						"choice-1:reject-once:allow_once"
+					]
+				}
+			],
+			"undecodable": [],
+			"piArgv": "[\"pi\",\"--no-session\",\"--no-context-files\",\"-ne\",\"-e\",\"<PI-GOVERNANCE-CHECKOUT>/dist/extension.js\",\"-e\",\"<PI-GOVERNANCE-CHECKOUT>/capture/scripted-provider.ts\",\"--provider\",\"pigov-capture\",\"--model\",\"pigov-capture/scripted\",\"--mode\",\"rpc\",\"--no-themes\"]",
+			"disk": {
+				"target.txt": "EDITED line under governance\n",
+				"written.txt": null
+			}
+		}
+	]
+}

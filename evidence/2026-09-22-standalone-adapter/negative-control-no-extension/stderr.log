@@ -1,0 +1,1 @@
+pi-governance: NEGATIVE CONTROL — the governance extension is NOT loaded. Tool calls run without a permission round-trip. Never use this outside a capture.

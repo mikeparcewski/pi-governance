@@ -1,0 +1,29 @@
+{
+	"name": "pi-governance",
+	"version": "0.1.0",
+	"description": "A pi extension that holds every pi tool call at a permission boundary, so an ACP carrier (pi-acp) raises it as a session/request_permission round-trip before the tool executes.",
+	"license": "MIT",
+	"type": "module",
+	"main": "dist/extension.js",
+	"files": [
+		"dist",
+		"README.md",
+		"LICENSE"
+	],
+	"scripts": {
+		"build": "tsc -p tsconfig.json",
+		"typecheck": "tsc -p tsconfig.json --noEmit",
+		"capture": "npm run build && node capture/capture.mjs",
+		"capture:real-model": "npm run build && node capture/real-model.mjs"
+	},
+	"devDependencies": {
+		"@earendil-works/pi-coding-agent": "0.84.2",
+		"@types/node": "^24.0.0",
+		"@zed-industries/agent-client-protocol": "0.4.5",
+		"pi-acp": "0.0.32",
+		"typescript": "5.9.3"
+	},
+	"engines": {
+		"node": ">=20"
+	}
+}
