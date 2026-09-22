@@ -15,8 +15,9 @@
  */
 
 import { spawn, execFileSync } from "node:child_process";
-import { existsSync, mkdirSync, readFileSync, appendFileSync, writeFileSync, rmSync } from "node:fs";
-import { dirname, join, resolve } from "node:path";
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, appendFileSync, writeFileSync, rmSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { dirname, join, relative, resolve } from "node:path";
 import { Readable, Writable } from "node:stream";
 import { fileURLToPath } from "node:url";
 import { ClientSideConnection, ndJsonStream } from "@zed-industries/agent-client-protocol";
@@ -61,9 +62,12 @@ const SCENARIOS = [
 // ---------------------------------------------------------------------------
 
 async function runScenario(scenario, outDir) {
-	const workDir = join(outDir, scenario.name, "work");
+	// pi runs in a throwaway temp directory; its final contents are copied into the evidence
+	// afterwards. Keeping the working tree out of the repo keeps the recorded `cwd` on the
+	// wire free of anything specific to whoever ran the capture.
+	const workDir = mkdtempSync(join(tmpdir(), `pi-governance-${scenario.name}-`));
 	rmSync(join(outDir, scenario.name), { recursive: true, force: true });
-	mkdirSync(workDir, { recursive: true });
+	mkdirSync(join(outDir, scenario.name), { recursive: true });
 	writeFileSync(join(workDir, "target.txt"), SEED);
 
 	const wirePath = join(outDir, scenario.name, "wire.jsonl");
@@ -201,10 +205,18 @@ async function runScenario(scenario, outDir) {
 		child.kill();
 	}
 
+	// Disk state is read back from the file system, never inferred from the log.
+	const recordDir = join(outDir, scenario.name, "work");
+	mkdirSync(recordDir, { recursive: true });
 	const readBack = (name) => {
 		const path = join(workDir, name);
-		return existsSync(path) ? readFileSync(path, "utf8") : null;
+		if (!existsSync(path)) return null;
+		const content = readFileSync(path, "utf8");
+		writeFileSync(join(recordDir, name), content);
+		return content;
 	};
+	const disk = { "target.txt": readBack("target.txt"), "written.txt": readBack("written.txt") };
+	rmSync(workDir, { recursive: true, force: true });
 
 	return {
 		scenario,
@@ -216,7 +228,7 @@ async function runScenario(scenario, outDir) {
 		wirePath,
 		stderrPath,
 		stderr: existsSync(stderrPath) ? readFileSync(stderrPath, "utf8") : "",
-		disk: { "target.txt": readBack("target.txt"), "written.txt": readBack("written.txt") },
+		disk,
 	};
 }
 
@@ -440,7 +452,7 @@ async function main() {
 	}
 	if (checks.length === 0) fail("no assertions ran");
 
-	const summary = { ...meta, checks, scenarios: runs.map((r) => ({ name: r.scenario.name, stopReason: r.stopReason, error: r.error ?? null, wire: r.wirePath.slice(REPO.length + 1), records: r.records.length, permissionRequests: r.permissions, disk: r.disk })) };
+	const summary = { ...meta, checks, scenarios: runs.map((r) => ({ name: r.scenario.name, stopReason: r.stopReason, error: r.error ?? null, wire: relative(REPO, r.wirePath), records: r.records.length, permissionRequests: r.permissions, disk: r.disk })) };
 	writeFileSync(join(outDir, "summary.json"), `${JSON.stringify(summary, null, "\t")}\n`);
 
 	const lines = [];
@@ -450,7 +462,7 @@ async function main() {
 	process.stdout.write(`${lines.join("\n")}\n`);
 	const failed = checks.filter((c) => !c.ok);
 	process.stdout.write(`\n${checks.length - failed.length}/${checks.length} checks passed\n`);
-	process.stdout.write(`evidence: ${outDir}\n`);
+	process.stdout.write(`evidence: ${relative(REPO, outDir) || outDir}\n`);
 	verdictReached = true;
 	if (failed.length > 0) fail(`${failed.length} admission check(s) failed`);
 }
