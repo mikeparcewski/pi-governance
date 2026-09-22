@@ -38,8 +38,9 @@ extension, with no adapter of ours anywhere in the path, holds the boundary for 
 the harness this repo now ships,
 [`evidence/2026-09-22-composed-in-repo/`](evidence/2026-09-22-composed-in-repo/CAPTURE.md).
 
-So the ~540-line ACP adapter this repo used to carry (`src/acp-agent.ts`, `src/pi-rpc.ts`,
-`src/cli.ts`) is gone. It re-implemented in 7 handlers what pi-acp does in 4,238 lines across 17
+So the ACP adapter this repo used to carry is gone — 445 lines across `src/acp-agent.ts`,
+`src/pi-rpc.ts` and `src/cli.ts` (the shared envelope in `src/protocol.ts` stays, because a host
+still has to decode it). It re-implemented in 7 handlers what pi-acp does in 4,230 lines across 17
 modules — sessions, resume, structured diffs, terminal streaming, slash and skill commands, auth,
 model and thinking modes — and it bought exactly one behaviour pi-acp does not have, recorded
 below so it cannot vanish in a diff.
@@ -149,7 +150,7 @@ at ~line 405, and a `block` short-circuits the call there.
 
 So that event means *"pi intends to run this"*, not *"pi is running this"*. The removed adapter
 mapped it to ACP `pending` and emitted `in_progress` only after an allow came back. pi-acp maps it
-straight to `in_progress`. **That single mapping is the only behaviour the 540 deleted lines
+straight to `in_progress`. **That single mapping is the only behaviour the 445 deleted lines
 provided that the composed path does not** — and deleting them is what makes admission point 2
 fail here while it passes in
 [`evidence/2026-09-22-standalone-adapter/`](evidence/2026-09-22-standalone-adapter/CAPTURE.md).
