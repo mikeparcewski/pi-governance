@@ -1,0 +1,71 @@
+{
+	"capturedAt": "2026-09-22T02:42:37.435Z",
+	"pi": "0.84.2",
+	"piPath": "/opt/homebrew/bin/pi",
+	"carrier": "pi-acp@0.0.32",
+	"extension": "<PI-GOVERNANCE-CHECKOUT>/dist/extension.js",
+	"piGovernanceCommit": "e1061f932de99943ebf566f5ca438c145df0ef9d",
+	"shim": "<CAPTURE-WORKDIR>/bridges/wicked-pi.mjs",
+	"node": "v26.0.0",
+	"platform": "darwin arm64",
+	"checks": [
+		{
+			"scenario": "composed-negative-control",
+			"id": "capture-is-non-empty",
+			"ok": true,
+			"detail": "records=25 methods=22"
+		},
+		{
+			"scenario": "composed-negative-control",
+			"id": "prompt-completed",
+			"ok": true,
+			"detail": "stopReason=end_turn error=none"
+		},
+		{
+			"scenario": "composed-negative-control",
+			"id": "no-undecodable-permission-requests",
+			"ok": true,
+			"detail": "[]"
+		},
+		{
+			"scenario": "composed-negative-control",
+			"id": "negative-control-zero-permission-requests",
+			"ok": true,
+			"detail": "requests=0"
+		},
+		{
+			"scenario": "composed-negative-control",
+			"id": "negative-control-write-executed",
+			"ok": true,
+			"detail": "completed@[21]"
+		},
+		{
+			"scenario": "composed-negative-control",
+			"id": "disk-target.txt",
+			"ok": true,
+			"detail": "on disk: \"EDITED line under governance\\n\""
+		},
+		{
+			"scenario": "composed-negative-control",
+			"id": "disk-written.txt",
+			"ok": true,
+			"detail": "on disk: \"CANARY-WRITE\\n\""
+		}
+	],
+	"scenarios": [
+		{
+			"name": "composed-negative-control",
+			"stopReason": "end_turn",
+			"error": null,
+			"records": 25,
+			"maxInFlightPermissions": 0,
+			"permissionRequests": [],
+			"undecodable": [],
+			"piArgv": "[\"pi\",\"--no-session\",\"--no-context-files\",\"-ne\",\"-e\",\"<PI-GOVERNANCE-CHECKOUT>/capture/scripted-provider.ts\",\"--provider\",\"pigov-capture\",\"--model\",\"pigov-capture/scripted\",\"--mode\",\"rpc\",\"--no-themes\"]",
+			"disk": {
+				"target.txt": "EDITED line under governance\n",
+				"written.txt": "CANARY-WRITE\n"
+			}
+		}
+	]
+}

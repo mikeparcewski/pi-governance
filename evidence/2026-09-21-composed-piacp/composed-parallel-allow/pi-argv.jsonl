@@ -1,0 +1,1 @@
+["pi","--no-session","--no-context-files","-ne","-e","<PI-GOVERNANCE-CHECKOUT>/dist/extension.js","-e","<CAPTURE-WORKDIR>/parallel-provider.ts","--provider","pigov-capture","--model","pigov-capture/scripted","--mode","rpc","--no-themes"]
