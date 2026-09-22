@@ -1,4 +1,17 @@
-# Capture — 2026-09-22
+# Capture — 2026-09-22 (the standalone adapter, since removed)
+
+> **Historical.** This run was taken against `pi-governance`'s own ACP adapter
+> (`src/acp-agent.ts`, `src/pi-rpc.ts`, `src/cli.ts`), which has since been deleted: `pi-acp`
+> already carries the ACP `session/request_permission` path, and the composed capture in
+> [`../2026-09-22-composed-in-repo/`](../2026-09-22-composed-in-repo/CAPTURE.md) shows the
+> extension producing the same boundary through it. The commands below no longer exist in this
+> shape; `capture/capture.mjs` now runs against pi-acp.
+>
+> It is kept for two things it still establishes: the **mutation record** below (the harness has
+> been seen failing, and one mutation found a real bug in it), and admission point 2 passing —
+> the one behaviour the removed adapter had that the composed path does not, because the adapter
+> mapped `tool_execution_start` to `pending` (see the README's *The one thing the adapter did
+> that pi-acp does not*).
 
 Live capture of `pi-governance` against the real `pi` CLI. Machine-readable results are in
 [`summary.json`](summary.json); the raw JSON-RPC lines, both directions, are in each

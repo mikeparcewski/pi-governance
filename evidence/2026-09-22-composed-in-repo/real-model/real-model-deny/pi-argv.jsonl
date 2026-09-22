@@ -1,0 +1,1 @@
+["pi","--no-session","--no-context-files","-ne","-e","<PI-GOVERNANCE-CHECKOUT>/dist/extension.js","-e","<PI-GOVERNANCE-CHECKOUT>/capture/ollama-provider.ts","--provider","ollama","--model","ollama/llama3.2:3b","--mode","rpc","--no-themes"]

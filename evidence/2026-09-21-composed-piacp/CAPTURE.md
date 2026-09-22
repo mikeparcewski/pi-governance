@@ -115,7 +115,14 @@ answer routes back correctly: in `composed-parallel-deny-b`, A is allowed and B 
 
 ## Reproducing
 
-The harness lives in `harness/` and was run from a working directory laid out as
+> The harness that produced this run now **lives in `capture/`** — it is the repo's capture,
+> re-pointed at repo-relative paths after the standalone adapter was deleted. Re-run from there:
+> `node capture/capture.mjs --only <scenario>`, and see
+> [`../2026-09-22-composed-in-repo/CAPTURE.md`](../2026-09-22-composed-in-repo/CAPTURE.md) for
+> the result (47/62 — same defect, and the ordering of the write's ask against its `in_progress`
+> turns out not to be stable run to run). The layout below is the scratch layout this run used.
+
+The harness lived in `harness/` and was run from a working directory laid out as
 
 ```
 <workdir>/piproof/{capture-composed.mjs,gate-pi.mjs,parallel-provider.ts,bridges/wicked-pi.mjs,node_modules/pi-acp@0.0.32}
@@ -123,9 +130,9 @@ The harness lives in `harness/` and was run from a working directory laid out as
 ```
 
 ```
-node capture-composed.mjs --only <scenario>     # one scenario, exits non-zero on any failure
-node aggregate.mjs evidence                     # fold per-scenario summaries into summary.json
-node timeline.mjs evidence/<scenario>/wire.jsonl
+node capture/capture.mjs --only <scenario>      # one scenario, exits non-zero on any failure
+node capture/aggregate.mjs <out-dir>            # fold per-scenario summaries into summary.json
+node capture/timeline.mjs <out-dir>/<scenario>/wire.jsonl
 ```
 
 The harness fails loudly by construction: fewer than 8 wire records or 4 JSON-RPC methods, a

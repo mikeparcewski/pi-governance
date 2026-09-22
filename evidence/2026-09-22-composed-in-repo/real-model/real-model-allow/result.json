@@ -1,0 +1,29 @@
+{
+	"model": "llama3.2:3b",
+	"mode": "allow",
+	"asks": [
+		{
+			"toolName": "write",
+			"title": "write: hello.txt",
+			"answer": "allow-once",
+			"answeredOptionId": "choice-0",
+			"offered": [
+				"choice-0:allow-once:allow_once",
+				"choice-1:reject-once:allow_once"
+			]
+		},
+		{
+			"toolName": "write",
+			"title": "write: hello.txt",
+			"answer": "allow-once",
+			"answeredOptionId": "choice-0",
+			"offered": [
+				"choice-0:allow-once:allow_once",
+				"choice-1:reject-once:allow_once"
+			]
+		}
+	],
+	"undecodable": [],
+	"stopReason": "end_turn",
+	"onDisk": "CANARY"
+}
