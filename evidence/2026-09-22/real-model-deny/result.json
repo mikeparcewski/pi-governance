@@ -1,0 +1,18 @@
+{
+	"model": "llama3.2:3b",
+	"mode": "deny",
+	"asks": [
+		{
+			"toolName": "write",
+			"title": "write: hello.txt",
+			"answer": "reject-once"
+		},
+		{
+			"toolName": "write",
+			"title": "write: hello.txt",
+			"answer": "reject-once"
+		}
+	],
+	"stopReason": "end_turn",
+	"onDisk": null
+}

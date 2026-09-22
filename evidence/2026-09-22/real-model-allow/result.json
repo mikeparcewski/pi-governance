@@ -1,0 +1,13 @@
+{
+	"model": "llama3.2:3b",
+	"mode": "allow",
+	"asks": [
+		{
+			"toolName": "write",
+			"title": "write: hello.txt",
+			"answer": "allow-once"
+		}
+	],
+	"stopReason": "end_turn",
+	"onDisk": "CANARY"
+}

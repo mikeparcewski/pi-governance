@@ -1,0 +1,254 @@
+{
+	"capturedAt": "2026-09-22T00:07:05.517Z",
+	"pi": "0.84.2",
+	"piPath": "/opt/homebrew/bin/pi",
+	"piGovernance": "0.1.0",
+	"piGovernanceCommit": "fe506109c2f6cb823330a5d1f098315d7a763cfc",
+	"acpLibrary": "0.4.5",
+	"node": "v26.0.0",
+	"platform": "darwin arm64",
+	"checks": [
+		{
+			"scenario": "governed-allow",
+			"id": "capture-is-non-empty",
+			"ok": true,
+			"detail": "records=27 methods=20"
+		},
+		{
+			"scenario": "governed-allow",
+			"id": "prompt-completed",
+			"ok": true,
+			"detail": "stopReason=end_turn error=none"
+		},
+		{
+			"scenario": "governed-allow",
+			"id": "read-requests-permission",
+			"ok": true,
+			"detail": "request@6 firstExecutionSignal@8"
+		},
+		{
+			"scenario": "governed-allow",
+			"id": "bash-requests-permission",
+			"ok": true,
+			"detail": "request@11 firstExecutionSignal@13"
+		},
+		{
+			"scenario": "governed-allow",
+			"id": "edit-requests-permission",
+			"ok": true,
+			"detail": "request@16 firstExecutionSignal@18"
+		},
+		{
+			"scenario": "governed-allow",
+			"id": "write-requests-permission",
+			"ok": true,
+			"detail": "request@21 firstExecutionSignal@23"
+		},
+		{
+			"scenario": "governed-allow",
+			"id": "no-ungoverned-tool-calls",
+			"ok": true,
+			"detail": "adapter reported 0"
+		},
+		{
+			"scenario": "governed-allow",
+			"id": "write-in-progress-only-after-permission-response",
+			"ok": true,
+			"detail": "request@21 answer@22 in_progress@[23]"
+		},
+		{
+			"scenario": "governed-allow",
+			"id": "disk-target.txt",
+			"ok": true,
+			"detail": "on disk: \"EDITED line under governance\\n\""
+		},
+		{
+			"scenario": "governed-allow",
+			"id": "disk-written.txt",
+			"ok": true,
+			"detail": "on disk: \"CANARY-WRITE\\n\""
+		},
+		{
+			"scenario": "governed-deny-write",
+			"id": "capture-is-non-empty",
+			"ok": true,
+			"detail": "records=26 methods=19"
+		},
+		{
+			"scenario": "governed-deny-write",
+			"id": "prompt-completed",
+			"ok": true,
+			"detail": "stopReason=end_turn error=none"
+		},
+		{
+			"scenario": "governed-deny-write",
+			"id": "read-requests-permission",
+			"ok": true,
+			"detail": "request@6 firstExecutionSignal@8"
+		},
+		{
+			"scenario": "governed-deny-write",
+			"id": "bash-requests-permission",
+			"ok": true,
+			"detail": "request@11 firstExecutionSignal@13"
+		},
+		{
+			"scenario": "governed-deny-write",
+			"id": "edit-requests-permission",
+			"ok": true,
+			"detail": "request@16 firstExecutionSignal@18"
+		},
+		{
+			"scenario": "governed-deny-write",
+			"id": "write-requests-permission",
+			"ok": true,
+			"detail": "request@21 firstExecutionSignal@23"
+		},
+		{
+			"scenario": "governed-deny-write",
+			"id": "no-ungoverned-tool-calls",
+			"ok": true,
+			"detail": "adapter reported 0"
+		},
+		{
+			"scenario": "governed-deny-write",
+			"id": "write-in-progress-only-after-permission-response",
+			"ok": true,
+			"detail": "request@21 answer@22 in_progress@[]"
+		},
+		{
+			"scenario": "governed-deny-write",
+			"id": "disk-target.txt",
+			"ok": true,
+			"detail": "on disk: \"EDITED line under governance\\n\""
+		},
+		{
+			"scenario": "governed-deny-write",
+			"id": "disk-written.txt",
+			"ok": true,
+			"detail": "on disk: null"
+		},
+		{
+			"scenario": "governed-deny-write",
+			"id": "denial-visible-on-the-wire",
+			"ok": true,
+			"detail": "record seq=22"
+		},
+		{
+			"scenario": "negative-control-no-extension",
+			"id": "capture-is-non-empty",
+			"ok": true,
+			"detail": "records=15 methods=12"
+		},
+		{
+			"scenario": "negative-control-no-extension",
+			"id": "prompt-completed",
+			"ok": true,
+			"detail": "stopReason=end_turn error=none"
+		},
+		{
+			"scenario": "negative-control-no-extension",
+			"id": "negative-control-zero-permission-requests",
+			"ok": true,
+			"detail": "requests=0"
+		},
+		{
+			"scenario": "negative-control-no-extension",
+			"id": "negative-control-write-executed",
+			"ok": true,
+			"detail": "writeToolCallId=scripted-3-write"
+		},
+		{
+			"scenario": "negative-control-no-extension",
+			"id": "disk-target.txt",
+			"ok": true,
+			"detail": "on disk: \"EDITED line under governance\\n\""
+		},
+		{
+			"scenario": "negative-control-no-extension",
+			"id": "disk-written.txt",
+			"ok": true,
+			"detail": "on disk: \"CANARY-WRITE\\n\""
+		}
+	],
+	"scenarios": [
+		{
+			"name": "governed-allow",
+			"stopReason": "end_turn",
+			"error": null,
+			"wire": "evidence/2026-09-22/governed-allow/wire.jsonl",
+			"records": 27,
+			"permissionRequests": [
+				{
+					"toolName": "read",
+					"toolCallId": "scripted-0-read",
+					"optionId": "allow-once"
+				},
+				{
+					"toolName": "bash",
+					"toolCallId": "scripted-1-bash",
+					"optionId": "allow-once"
+				},
+				{
+					"toolName": "edit",
+					"toolCallId": "scripted-2-edit",
+					"optionId": "allow-once"
+				},
+				{
+					"toolName": "write",
+					"toolCallId": "scripted-3-write",
+					"optionId": "allow-once"
+				}
+			],
+			"disk": {
+				"target.txt": "EDITED line under governance\n",
+				"written.txt": "CANARY-WRITE\n"
+			}
+		},
+		{
+			"name": "governed-deny-write",
+			"stopReason": "end_turn",
+			"error": null,
+			"wire": "evidence/2026-09-22/governed-deny-write/wire.jsonl",
+			"records": 26,
+			"permissionRequests": [
+				{
+					"toolName": "read",
+					"toolCallId": "scripted-0-read",
+					"optionId": "allow-once"
+				},
+				{
+					"toolName": "bash",
+					"toolCallId": "scripted-1-bash",
+					"optionId": "allow-once"
+				},
+				{
+					"toolName": "edit",
+					"toolCallId": "scripted-2-edit",
+					"optionId": "allow-once"
+				},
+				{
+					"toolName": "write",
+					"toolCallId": "scripted-3-write",
+					"optionId": "reject-once"
+				}
+			],
+			"disk": {
+				"target.txt": "EDITED line under governance\n",
+				"written.txt": null
+			}
+		},
+		{
+			"name": "negative-control-no-extension",
+			"stopReason": "end_turn",
+			"error": null,
+			"wire": "evidence/2026-09-22/negative-control-no-extension/wire.jsonl",
+			"records": 15,
+			"permissionRequests": [],
+			"disk": {
+				"target.txt": "EDITED line under governance\n",
+				"written.txt": "CANARY-WRITE\n"
+			}
+		}
+	]
+}
