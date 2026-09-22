@@ -32,7 +32,13 @@ import { ClientSideConnection, ndJsonStream } from "@zed-industries/agent-client
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const REPO = resolve(HERE, "..");
-const CARRIER = join(REPO, "node_modules", "pi-acp", "dist", "index.js");
+/**
+ * The ACP carrier. Defaults to the pinned pi-acp in node_modules; PIGOV_CARRIER points it at a
+ * candidate build instead, which is how a proposed carrier fix is judged against the same bar.
+ */
+const CARRIER = process.env.PIGOV_CARRIER
+	? resolve(process.env.PIGOV_CARRIER)
+	: join(REPO, "node_modules", "pi-acp", "dist", "index.js");
 /** Optional: wicked-crew's `wicked-pi.mjs`, used verbatim when it is available. */
 const SHIM = process.env.PIGOV_PI_SHIM ? resolve(process.env.PIGOV_PI_SHIM) : null;
 const GATE_PI = join(HERE, "gate-pi.mjs");
@@ -528,7 +534,9 @@ function versions() {
 	} catch (err) {
 		throw new Error(`capture: cannot run the real pi CLI: ${err instanceof Error ? err.message : String(err)}`);
 	}
-	const carrier = JSON.parse(readFileSync(join(REPO, "node_modules", "pi-acp", "package.json"), "utf8"));
+	// Read the carrier's identity from the package it was loaded out of, so an overridden
+	// carrier cannot be recorded under the pinned one's version.
+	const carrier = JSON.parse(readFileSync(resolve(dirname(CARRIER), "..", "package.json"), "utf8"));
 	let pigovCommit;
 	try {
 		pigovCommit = execFileSync("git", ["rev-parse", "HEAD"], { cwd: REPO, encoding: "utf8" }).trim();

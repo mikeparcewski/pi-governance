@@ -1,0 +1,144 @@
+{
+	"capturedAt": "2026-09-22T10:52:13.404Z",
+	"pi": "0.84.2",
+	"piPath": "/opt/homebrew/bin/pi",
+	"carrier": "pi-acp@0.0.33",
+	"extension": "<PI-GOVERNANCE-CHECKOUT>/dist/extension.js",
+	"piGovernanceCommit": "dc591685e6b040b435311ada5ad32aa728a6ec11",
+	"shim": "(none: pi-acp spawns gate-pi.mjs directly)",
+	"node": "v26.0.0",
+	"platform": "darwin arm64",
+	"checks": [
+		{
+			"scenario": "composed-allow",
+			"id": "capture-is-non-empty",
+			"ok": true,
+			"detail": "records=33 methods=26"
+		},
+		{
+			"scenario": "composed-allow",
+			"id": "prompt-completed",
+			"ok": true,
+			"detail": "stopReason=end_turn error=none"
+		},
+		{
+			"scenario": "composed-allow",
+			"id": "no-undecodable-permission-requests",
+			"ok": true,
+			"detail": "[]"
+		},
+		{
+			"scenario": "composed-allow",
+			"id": "read-requests-permission",
+			"ok": true,
+			"detail": "request@10 firstExecutionSignal@12"
+		},
+		{
+			"scenario": "composed-allow",
+			"id": "bash-requests-permission",
+			"ok": true,
+			"detail": "request@15 firstExecutionSignal@17"
+		},
+		{
+			"scenario": "composed-allow",
+			"id": "edit-requests-permission",
+			"ok": true,
+			"detail": "request@22 firstExecutionSignal@24"
+		},
+		{
+			"scenario": "composed-allow",
+			"id": "write-requests-permission",
+			"ok": true,
+			"detail": "request@25 firstExecutionSignal@29"
+		},
+		{
+			"scenario": "composed-allow",
+			"id": "write-in-progress-only-after-permission-response",
+			"ok": true,
+			"detail": "request@25 answer@28 in_progress@[]"
+		},
+		{
+			"scenario": "composed-allow",
+			"id": "four-permission-requests",
+			"ok": true,
+			"detail": "requests=4"
+		},
+		{
+			"scenario": "composed-allow",
+			"id": "disk-target.txt",
+			"ok": true,
+			"detail": "on disk: \"EDITED line under governance\\n\""
+		},
+		{
+			"scenario": "composed-allow",
+			"id": "disk-written.txt",
+			"ok": true,
+			"detail": "on disk: \"CANARY-WRITE\\n\""
+		}
+	],
+	"scenarios": [
+		{
+			"name": "composed-allow",
+			"stopReason": "end_turn",
+			"error": null,
+			"records": 33,
+			"maxInFlightPermissions": 1,
+			"permissionRequests": [
+				{
+					"uiToolCallId": "pi-ui-4bfe1b12-f847-4015-9482-4c6325ae46c2",
+					"piToolCallId": "scripted-0-read",
+					"toolName": "read",
+					"path": "target.txt",
+					"answeredName": "allow-once",
+					"answeredOptionId": "choice-0",
+					"offered": [
+						"choice-0:allow-once:allow_once",
+						"choice-1:reject-once:reject_once"
+					]
+				},
+				{
+					"uiToolCallId": "pi-ui-519ecf1e-8744-4bec-bc79-c7f96a90fac0",
+					"piToolCallId": "scripted-1-bash",
+					"toolName": "bash",
+					"path": "echo hello-from-bash",
+					"answeredName": "allow-once",
+					"answeredOptionId": "choice-0",
+					"offered": [
+						"choice-0:allow-once:allow_once",
+						"choice-1:reject-once:reject_once"
+					]
+				},
+				{
+					"uiToolCallId": "pi-ui-9c9bc6a6-fe2e-40df-bfae-e3f1a6e7da33",
+					"piToolCallId": "scripted-2-edit",
+					"toolName": "edit",
+					"path": "target.txt",
+					"answeredName": "allow-once",
+					"answeredOptionId": "choice-0",
+					"offered": [
+						"choice-0:allow-once:allow_once",
+						"choice-1:reject-once:reject_once"
+					]
+				},
+				{
+					"uiToolCallId": "pi-ui-02bed6d3-bac7-4435-9148-f351fe029ce2",
+					"piToolCallId": "scripted-3-write",
+					"toolName": "write",
+					"path": "written.txt",
+					"answeredName": "allow-once",
+					"answeredOptionId": "choice-0",
+					"offered": [
+						"choice-0:allow-once:allow_once",
+						"choice-1:reject-once:reject_once"
+					]
+				}
+			],
+			"undecodable": [],
+			"piArgv": "[\"pi\",\"--no-session\",\"--no-context-files\",\"-ne\",\"-e\",\"<PI-GOVERNANCE-CHECKOUT>/dist/extension.js\",\"-e\",\"<PI-GOVERNANCE-CHECKOUT>/capture/scripted-provider.ts\",\"--provider\",\"pigov-capture\",\"--model\",\"pigov-capture/scripted\",\"--mode\",\"rpc\",\"--no-themes\"]",
+			"disk": {
+				"target.txt": "EDITED line under governance\n",
+				"written.txt": "CANARY-WRITE\n"
+			}
+		}
+	]
+}

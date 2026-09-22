@@ -89,6 +89,44 @@ Both options are stamped `kind: allow_once` by `pi-acp` — including the reject
 answers by option *name*, so the denial was honoured. A host that routed on the ACP `kind` field
 would have read that rejection as an approval.
 
+## With the carrier fix applied: `patched-carrier/` — 62/62
+
+The same six scenarios, same pi, same extension, run against a `pi-acp` build carrying the
+proposed fix (`tool_execution_start` → `pending`; `in_progress` on `tool_execution_update`, where
+the tool is actually producing output), loaded with `PIGOV_CARRIER=<candidate>/dist/index.js`:
+
+```
+62/62 checks passed across 6 scenarios          carrier: pi-acp@0.0.33 (patched)
+PASS composed-allow write-in-progress-only-after-permission-response  request@25 answer@28 in_progress@[]
+PASS composed-allow read-requests-permission                          request@10 firstExecutionSignal@12
+```
+
+Admission point 2 passes, for every tool kind, with **no adapter of ours in the path**. That is
+the whole case for fixing it in the carrier rather than keeping 540 lines alive to hold one
+mapping. The remaining nuance is visible in the check detail: `in_progress@[]` — a tool that
+streams no partial output now goes `pending → completed`, because after the fix nothing claims
+execution started until output arrives. `bash`, which streams, still reports `in_progress`.
+
+Evidence: [`patched-carrier/summary.json`](patched-carrier/summary.json) and the per-scenario
+wire recordings beside it.
+
+## Has the shipped harness been seen failing?
+
+A capture that has never failed proves nothing about what it would catch. Two mutations were run
+against `capture/capture.mjs` as it ships here, after the move out of the scratch layout:
+
+| Mutation | Result |
+|---|---|
+| `PIPROOF_REAL_PI=/nonexistent/pi` (pi cannot start) | exit **1**, 1/11 — `capture-is-non-empty records=4 methods=2`, `prompt-completed stopReason=undefined`, all four tool calls "never appeared on the wire" |
+| Gate asks, then ignores the answer (`dist/extension.js`: `if (false && choice !== ALLOW_OPTION_ID)`) | exit **1**, 7/12 on `composed-deny-write` — `denial-visible-on-the-wire` still **PASS**, `disk-written.txt on disk: "CANARY-WRITE\n"` **FAIL** |
+
+The second is the one that matters: the denial was on the wire, and the capture still failed,
+because disk state is read back from the file system and never inferred from the log. A wire
+message saying "denied" buys nothing here.
+
+Both mutations were reverted before this evidence was taken; the run above is from the unmutated
+build (`npm run build`).
+
 ## What this does not establish
 
 - Nothing about a hosted frontier model; the corroboration is one 3B local model.

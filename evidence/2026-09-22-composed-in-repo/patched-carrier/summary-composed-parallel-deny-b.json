@@ -1,0 +1,120 @@
+{
+	"capturedAt": "2026-09-22T10:52:49.655Z",
+	"pi": "0.84.2",
+	"piPath": "/opt/homebrew/bin/pi",
+	"carrier": "pi-acp@0.0.33",
+	"extension": "<PI-GOVERNANCE-CHECKOUT>/dist/extension.js",
+	"piGovernanceCommit": "dc591685e6b040b435311ada5ad32aa728a6ec11",
+	"shim": "(none: pi-acp spawns gate-pi.mjs directly)",
+	"node": "v26.0.0",
+	"platform": "darwin arm64",
+	"checks": [
+		{
+			"scenario": "composed-parallel-deny-b",
+			"id": "capture-is-non-empty",
+			"ok": true,
+			"detail": "records=21 methods=16"
+		},
+		{
+			"scenario": "composed-parallel-deny-b",
+			"id": "prompt-completed",
+			"ok": true,
+			"detail": "stopReason=end_turn error=none"
+		},
+		{
+			"scenario": "composed-parallel-deny-b",
+			"id": "no-undecodable-permission-requests",
+			"ok": true,
+			"detail": "[]"
+		},
+		{
+			"scenario": "composed-parallel-deny-b",
+			"id": "parallel-two-permission-requests",
+			"ok": true,
+			"detail": "requests=2"
+		},
+		{
+			"scenario": "composed-parallel-deny-b",
+			"id": "parallel-no-sibling-settles-before-both-answers",
+			"ok": true,
+			"detail": "lastAnswer@15 terminalBefore=[] maxInFlightAsks=1"
+		},
+		{
+			"scenario": "composed-parallel-deny-b",
+			"id": "parallel-a-asked-and-answered",
+			"ok": true,
+			"detail": "request@11 answer@12"
+		},
+		{
+			"scenario": "composed-parallel-deny-b",
+			"id": "parallel-b-asked-and-answered",
+			"ok": true,
+			"detail": "request@14 answer@15"
+		},
+		{
+			"scenario": "composed-parallel-deny-b",
+			"id": "parallel-answers-matched-to-the-right-call",
+			"ok": true,
+			"detail": "{\"parallel-a.txt\":\"allow-once\",\"parallel-b.txt\":\"reject-once\"}"
+		},
+		{
+			"scenario": "composed-parallel-deny-b",
+			"id": "disk-parallel-a.txt",
+			"ok": true,
+			"detail": "on disk: \"A-CONTENT\\n\""
+		},
+		{
+			"scenario": "composed-parallel-deny-b",
+			"id": "disk-parallel-b.txt",
+			"ok": true,
+			"detail": "on disk: null"
+		},
+		{
+			"scenario": "composed-parallel-deny-b",
+			"id": "denial-visible-on-the-wire",
+			"ok": true,
+			"detail": "record seq=15 optionId=choice-1"
+		}
+	],
+	"scenarios": [
+		{
+			"name": "composed-parallel-deny-b",
+			"stopReason": "end_turn",
+			"error": null,
+			"records": 21,
+			"maxInFlightPermissions": 1,
+			"permissionRequests": [
+				{
+					"uiToolCallId": "pi-ui-c9f77e4c-e554-491e-b431-16b10c44caa7",
+					"piToolCallId": "scripted-par-parallel-a.txt",
+					"toolName": "write",
+					"path": "parallel-a.txt",
+					"answeredName": "allow-once",
+					"answeredOptionId": "choice-0",
+					"offered": [
+						"choice-0:allow-once:allow_once",
+						"choice-1:reject-once:reject_once"
+					]
+				},
+				{
+					"uiToolCallId": "pi-ui-5476ee21-9c76-4ea9-bf8a-d03dd4ff78ac",
+					"piToolCallId": "scripted-par-parallel-b.txt",
+					"toolName": "write",
+					"path": "parallel-b.txt",
+					"answeredName": "reject-once",
+					"answeredOptionId": "choice-1",
+					"offered": [
+						"choice-0:allow-once:allow_once",
+						"choice-1:reject-once:reject_once"
+					]
+				}
+			],
+			"undecodable": [],
+			"piArgv": "[\"pi\",\"--no-session\",\"--no-context-files\",\"-ne\",\"-e\",\"<PI-GOVERNANCE-CHECKOUT>/dist/extension.js\",\"-e\",\"<PI-GOVERNANCE-CHECKOUT>/capture/parallel-provider.ts\",\"--provider\",\"pigov-capture\",\"--model\",\"pigov-capture/scripted\",\"--mode\",\"rpc\",\"--no-themes\"]",
+			"disk": {
+				"parallel-a.txt": "A-CONTENT\n",
+				"parallel-b.txt": null
+			}
+		}
+	]
+}

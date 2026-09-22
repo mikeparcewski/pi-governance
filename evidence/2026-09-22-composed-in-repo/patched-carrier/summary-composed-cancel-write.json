@@ -1,0 +1,144 @@
+{
+	"capturedAt": "2026-09-22T10:52:33.756Z",
+	"pi": "0.84.2",
+	"piPath": "/opt/homebrew/bin/pi",
+	"carrier": "pi-acp@0.0.33",
+	"extension": "<PI-GOVERNANCE-CHECKOUT>/dist/extension.js",
+	"piGovernanceCommit": "dc591685e6b040b435311ada5ad32aa728a6ec11",
+	"shim": "(none: pi-acp spawns gate-pi.mjs directly)",
+	"node": "v26.0.0",
+	"platform": "darwin arm64",
+	"checks": [
+		{
+			"scenario": "composed-cancel-write",
+			"id": "capture-is-non-empty",
+			"ok": true,
+			"detail": "records=33 methods=26"
+		},
+		{
+			"scenario": "composed-cancel-write",
+			"id": "prompt-completed",
+			"ok": true,
+			"detail": "stopReason=end_turn error=none"
+		},
+		{
+			"scenario": "composed-cancel-write",
+			"id": "no-undecodable-permission-requests",
+			"ok": true,
+			"detail": "[]"
+		},
+		{
+			"scenario": "composed-cancel-write",
+			"id": "read-requests-permission",
+			"ok": true,
+			"detail": "request@10 firstExecutionSignal@12"
+		},
+		{
+			"scenario": "composed-cancel-write",
+			"id": "bash-requests-permission",
+			"ok": true,
+			"detail": "request@15 firstExecutionSignal@17"
+		},
+		{
+			"scenario": "composed-cancel-write",
+			"id": "edit-requests-permission",
+			"ok": true,
+			"detail": "request@22 firstExecutionSignal@24"
+		},
+		{
+			"scenario": "composed-cancel-write",
+			"id": "write-requests-permission",
+			"ok": true,
+			"detail": "request@25 firstExecutionSignal@29"
+		},
+		{
+			"scenario": "composed-cancel-write",
+			"id": "write-in-progress-only-after-permission-response",
+			"ok": true,
+			"detail": "request@25 answer@28 in_progress@[]"
+		},
+		{
+			"scenario": "composed-cancel-write",
+			"id": "four-permission-requests",
+			"ok": true,
+			"detail": "requests=4"
+		},
+		{
+			"scenario": "composed-cancel-write",
+			"id": "disk-target.txt",
+			"ok": true,
+			"detail": "on disk: \"EDITED line under governance\\n\""
+		},
+		{
+			"scenario": "composed-cancel-write",
+			"id": "disk-written.txt",
+			"ok": true,
+			"detail": "on disk: null"
+		}
+	],
+	"scenarios": [
+		{
+			"name": "composed-cancel-write",
+			"stopReason": "end_turn",
+			"error": null,
+			"records": 33,
+			"maxInFlightPermissions": 1,
+			"permissionRequests": [
+				{
+					"uiToolCallId": "pi-ui-cad3f329-7f69-4826-8f9b-8c56b5fc551b",
+					"piToolCallId": "scripted-0-read",
+					"toolName": "read",
+					"path": "target.txt",
+					"answeredName": "allow-once",
+					"answeredOptionId": "choice-0",
+					"offered": [
+						"choice-0:allow-once:allow_once",
+						"choice-1:reject-once:reject_once"
+					]
+				},
+				{
+					"uiToolCallId": "pi-ui-ca123da4-72b1-4c82-ad3b-8711cb588ab7",
+					"piToolCallId": "scripted-1-bash",
+					"toolName": "bash",
+					"path": "echo hello-from-bash",
+					"answeredName": "allow-once",
+					"answeredOptionId": "choice-0",
+					"offered": [
+						"choice-0:allow-once:allow_once",
+						"choice-1:reject-once:reject_once"
+					]
+				},
+				{
+					"uiToolCallId": "pi-ui-6fe9508c-d1b2-426b-8e06-22340ba10232",
+					"piToolCallId": "scripted-2-edit",
+					"toolName": "edit",
+					"path": "target.txt",
+					"answeredName": "allow-once",
+					"answeredOptionId": "choice-0",
+					"offered": [
+						"choice-0:allow-once:allow_once",
+						"choice-1:reject-once:reject_once"
+					]
+				},
+				{
+					"uiToolCallId": "pi-ui-5070770e-0c08-46ee-9ec5-c48e0c2da02c",
+					"piToolCallId": "scripted-3-write",
+					"toolName": "write",
+					"path": "written.txt",
+					"answeredName": "(cancel)",
+					"answeredOptionId": null,
+					"offered": [
+						"choice-0:allow-once:allow_once",
+						"choice-1:reject-once:reject_once"
+					]
+				}
+			],
+			"undecodable": [],
+			"piArgv": "[\"pi\",\"--no-session\",\"--no-context-files\",\"-ne\",\"-e\",\"<PI-GOVERNANCE-CHECKOUT>/dist/extension.js\",\"-e\",\"<PI-GOVERNANCE-CHECKOUT>/capture/scripted-provider.ts\",\"--provider\",\"pigov-capture\",\"--model\",\"pigov-capture/scripted\",\"--mode\",\"rpc\",\"--no-themes\"]",
+			"disk": {
+				"target.txt": "EDITED line under governance\n",
+				"written.txt": null
+			}
+		}
+	]
+}
