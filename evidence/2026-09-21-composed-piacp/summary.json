@@ -1,0 +1,673 @@
+{
+	"pi": "0.84.2",
+	"piPath": "/opt/homebrew/bin/pi",
+	"carrier": "pi-acp@0.0.32",
+	"node": "v26.0.0",
+	"platform": "darwin arm64",
+	"piGovernanceCommit": "e1061f932de99943ebf566f5ca438c145df0ef9d",
+	"totalChecks": 62,
+	"failedChecks": 12,
+	"checks": [
+		{
+			"scenario": "composed-allow",
+			"id": "capture-is-non-empty",
+			"ok": true,
+			"detail": "records=33 methods=26"
+		},
+		{
+			"scenario": "composed-allow",
+			"id": "prompt-completed",
+			"ok": true,
+			"detail": "stopReason=end_turn error=none"
+		},
+		{
+			"scenario": "composed-allow",
+			"id": "no-undecodable-permission-requests",
+			"ok": true,
+			"detail": "[]"
+		},
+		{
+			"scenario": "composed-allow",
+			"id": "read-requests-permission",
+			"ok": false,
+			"detail": "request@10 firstExecutionSignal@9"
+		},
+		{
+			"scenario": "composed-allow",
+			"id": "bash-requests-permission",
+			"ok": false,
+			"detail": "request@15 firstExecutionSignal@14"
+		},
+		{
+			"scenario": "composed-allow",
+			"id": "edit-requests-permission",
+			"ok": false,
+			"detail": "request@22 firstExecutionSignal@21"
+		},
+		{
+			"scenario": "composed-allow",
+			"id": "write-requests-permission",
+			"ok": true,
+			"detail": "request@25 firstExecutionSignal@27"
+		},
+		{
+			"scenario": "composed-allow",
+			"id": "write-in-progress-only-after-permission-response",
+			"ok": false,
+			"detail": "request@25 answer@28 in_progress@[27]"
+		},
+		{
+			"scenario": "composed-allow",
+			"id": "four-permission-requests",
+			"ok": true,
+			"detail": "requests=4"
+		},
+		{
+			"scenario": "composed-allow",
+			"id": "disk-target.txt",
+			"ok": true,
+			"detail": "on disk: \"EDITED line under governance\\n\""
+		},
+		{
+			"scenario": "composed-allow",
+			"id": "disk-written.txt",
+			"ok": true,
+			"detail": "on disk: \"CANARY-WRITE\\n\""
+		},
+		{
+			"scenario": "composed-deny-write",
+			"id": "capture-is-non-empty",
+			"ok": true,
+			"detail": "records=33 methods=26"
+		},
+		{
+			"scenario": "composed-deny-write",
+			"id": "prompt-completed",
+			"ok": true,
+			"detail": "stopReason=end_turn error=none"
+		},
+		{
+			"scenario": "composed-deny-write",
+			"id": "no-undecodable-permission-requests",
+			"ok": true,
+			"detail": "[]"
+		},
+		{
+			"scenario": "composed-deny-write",
+			"id": "read-requests-permission",
+			"ok": false,
+			"detail": "request@10 firstExecutionSignal@9"
+		},
+		{
+			"scenario": "composed-deny-write",
+			"id": "bash-requests-permission",
+			"ok": false,
+			"detail": "request@15 firstExecutionSignal@14"
+		},
+		{
+			"scenario": "composed-deny-write",
+			"id": "edit-requests-permission",
+			"ok": false,
+			"detail": "request@22 firstExecutionSignal@21"
+		},
+		{
+			"scenario": "composed-deny-write",
+			"id": "write-requests-permission",
+			"ok": true,
+			"detail": "request@25 firstExecutionSignal@27"
+		},
+		{
+			"scenario": "composed-deny-write",
+			"id": "write-in-progress-only-after-permission-response",
+			"ok": false,
+			"detail": "request@25 answer@28 in_progress@[27]"
+		},
+		{
+			"scenario": "composed-deny-write",
+			"id": "four-permission-requests",
+			"ok": true,
+			"detail": "requests=4"
+		},
+		{
+			"scenario": "composed-deny-write",
+			"id": "disk-target.txt",
+			"ok": true,
+			"detail": "on disk: \"EDITED line under governance\\n\""
+		},
+		{
+			"scenario": "composed-deny-write",
+			"id": "disk-written.txt",
+			"ok": true,
+			"detail": "on disk: null"
+		},
+		{
+			"scenario": "composed-deny-write",
+			"id": "denial-visible-on-the-wire",
+			"ok": true,
+			"detail": "record seq=28 optionId=choice-1"
+		},
+		{
+			"scenario": "composed-cancel-write",
+			"id": "capture-is-non-empty",
+			"ok": true,
+			"detail": "records=33 methods=26"
+		},
+		{
+			"scenario": "composed-cancel-write",
+			"id": "prompt-completed",
+			"ok": true,
+			"detail": "stopReason=end_turn error=none"
+		},
+		{
+			"scenario": "composed-cancel-write",
+			"id": "no-undecodable-permission-requests",
+			"ok": true,
+			"detail": "[]"
+		},
+		{
+			"scenario": "composed-cancel-write",
+			"id": "read-requests-permission",
+			"ok": false,
+			"detail": "request@10 firstExecutionSignal@9"
+		},
+		{
+			"scenario": "composed-cancel-write",
+			"id": "bash-requests-permission",
+			"ok": false,
+			"detail": "request@15 firstExecutionSignal@14"
+		},
+		{
+			"scenario": "composed-cancel-write",
+			"id": "edit-requests-permission",
+			"ok": false,
+			"detail": "request@22 firstExecutionSignal@21"
+		},
+		{
+			"scenario": "composed-cancel-write",
+			"id": "write-requests-permission",
+			"ok": true,
+			"detail": "request@25 firstExecutionSignal@27"
+		},
+		{
+			"scenario": "composed-cancel-write",
+			"id": "write-in-progress-only-after-permission-response",
+			"ok": false,
+			"detail": "request@25 answer@28 in_progress@[27]"
+		},
+		{
+			"scenario": "composed-cancel-write",
+			"id": "four-permission-requests",
+			"ok": true,
+			"detail": "requests=4"
+		},
+		{
+			"scenario": "composed-cancel-write",
+			"id": "disk-target.txt",
+			"ok": true,
+			"detail": "on disk: \"EDITED line under governance\\n\""
+		},
+		{
+			"scenario": "composed-cancel-write",
+			"id": "disk-written.txt",
+			"ok": true,
+			"detail": "on disk: null"
+		},
+		{
+			"scenario": "composed-negative-control",
+			"id": "capture-is-non-empty",
+			"ok": true,
+			"detail": "records=25 methods=22"
+		},
+		{
+			"scenario": "composed-negative-control",
+			"id": "prompt-completed",
+			"ok": true,
+			"detail": "stopReason=end_turn error=none"
+		},
+		{
+			"scenario": "composed-negative-control",
+			"id": "no-undecodable-permission-requests",
+			"ok": true,
+			"detail": "[]"
+		},
+		{
+			"scenario": "composed-negative-control",
+			"id": "negative-control-zero-permission-requests",
+			"ok": true,
+			"detail": "requests=0"
+		},
+		{
+			"scenario": "composed-negative-control",
+			"id": "negative-control-write-executed",
+			"ok": true,
+			"detail": "completed@[21]"
+		},
+		{
+			"scenario": "composed-negative-control",
+			"id": "disk-target.txt",
+			"ok": true,
+			"detail": "on disk: \"EDITED line under governance\\n\""
+		},
+		{
+			"scenario": "composed-negative-control",
+			"id": "disk-written.txt",
+			"ok": true,
+			"detail": "on disk: \"CANARY-WRITE\\n\""
+		},
+		{
+			"scenario": "composed-parallel-allow",
+			"id": "capture-is-non-empty",
+			"ok": true,
+			"detail": "records=21 methods=16"
+		},
+		{
+			"scenario": "composed-parallel-allow",
+			"id": "prompt-completed",
+			"ok": true,
+			"detail": "stopReason=end_turn error=none"
+		},
+		{
+			"scenario": "composed-parallel-allow",
+			"id": "no-undecodable-permission-requests",
+			"ok": true,
+			"detail": "[]"
+		},
+		{
+			"scenario": "composed-parallel-allow",
+			"id": "parallel-two-permission-requests",
+			"ok": true,
+			"detail": "requests=2"
+		},
+		{
+			"scenario": "composed-parallel-allow",
+			"id": "parallel-no-sibling-settles-before-both-answers",
+			"ok": true,
+			"detail": "lastAnswer@15 terminalBefore=[] maxInFlightAsks=1"
+		},
+		{
+			"scenario": "composed-parallel-allow",
+			"id": "parallel-a-asked-and-answered",
+			"ok": true,
+			"detail": "request@11 answer@12"
+		},
+		{
+			"scenario": "composed-parallel-allow",
+			"id": "parallel-b-asked-and-answered",
+			"ok": true,
+			"detail": "request@14 answer@15"
+		},
+		{
+			"scenario": "composed-parallel-allow",
+			"id": "parallel-answers-matched-to-the-right-call",
+			"ok": true,
+			"detail": "{\"parallel-a.txt\":\"allow-once\",\"parallel-b.txt\":\"allow-once\"}"
+		},
+		{
+			"scenario": "composed-parallel-allow",
+			"id": "disk-parallel-a.txt",
+			"ok": true,
+			"detail": "on disk: \"A-CONTENT\\n\""
+		},
+		{
+			"scenario": "composed-parallel-allow",
+			"id": "disk-parallel-b.txt",
+			"ok": true,
+			"detail": "on disk: \"B-CONTENT\\n\""
+		},
+		{
+			"scenario": "composed-parallel-deny-b",
+			"id": "capture-is-non-empty",
+			"ok": true,
+			"detail": "records=21 methods=16"
+		},
+		{
+			"scenario": "composed-parallel-deny-b",
+			"id": "prompt-completed",
+			"ok": true,
+			"detail": "stopReason=end_turn error=none"
+		},
+		{
+			"scenario": "composed-parallel-deny-b",
+			"id": "no-undecodable-permission-requests",
+			"ok": true,
+			"detail": "[]"
+		},
+		{
+			"scenario": "composed-parallel-deny-b",
+			"id": "parallel-two-permission-requests",
+			"ok": true,
+			"detail": "requests=2"
+		},
+		{
+			"scenario": "composed-parallel-deny-b",
+			"id": "parallel-no-sibling-settles-before-both-answers",
+			"ok": true,
+			"detail": "lastAnswer@15 terminalBefore=[] maxInFlightAsks=1"
+		},
+		{
+			"scenario": "composed-parallel-deny-b",
+			"id": "parallel-a-asked-and-answered",
+			"ok": true,
+			"detail": "request@11 answer@12"
+		},
+		{
+			"scenario": "composed-parallel-deny-b",
+			"id": "parallel-b-asked-and-answered",
+			"ok": true,
+			"detail": "request@14 answer@15"
+		},
+		{
+			"scenario": "composed-parallel-deny-b",
+			"id": "parallel-answers-matched-to-the-right-call",
+			"ok": true,
+			"detail": "{\"parallel-a.txt\":\"allow-once\",\"parallel-b.txt\":\"reject-once\"}"
+		},
+		{
+			"scenario": "composed-parallel-deny-b",
+			"id": "disk-parallel-a.txt",
+			"ok": true,
+			"detail": "on disk: \"A-CONTENT\\n\""
+		},
+		{
+			"scenario": "composed-parallel-deny-b",
+			"id": "disk-parallel-b.txt",
+			"ok": true,
+			"detail": "on disk: null"
+		},
+		{
+			"scenario": "composed-parallel-deny-b",
+			"id": "denial-visible-on-the-wire",
+			"ok": true,
+			"detail": "record seq=15 optionId=choice-1"
+		}
+	],
+	"scenarios": [
+		{
+			"name": "composed-allow",
+			"stopReason": "end_turn",
+			"error": null,
+			"records": 33,
+			"maxInFlightPermissions": 1,
+			"permissionRequests": [
+				{
+					"uiToolCallId": "pi-ui-7da68e93-776b-489b-8468-26e6ddef7fd5",
+					"piToolCallId": "scripted-0-read",
+					"toolName": "read",
+					"path": "target.txt",
+					"answeredName": "allow-once",
+					"answeredOptionId": "choice-0",
+					"offered": [
+						"choice-0:allow-once:allow_once",
+						"choice-1:reject-once:allow_once"
+					]
+				},
+				{
+					"uiToolCallId": "pi-ui-bf96e6e9-454e-4581-9102-b4ac0eefa7f6",
+					"piToolCallId": "scripted-1-bash",
+					"toolName": "bash",
+					"path": "echo hello-from-bash",
+					"answeredName": "allow-once",
+					"answeredOptionId": "choice-0",
+					"offered": [
+						"choice-0:allow-once:allow_once",
+						"choice-1:reject-once:allow_once"
+					]
+				},
+				{
+					"uiToolCallId": "pi-ui-673f1d68-985c-4c9b-98ce-f7ac739a322b",
+					"piToolCallId": "scripted-2-edit",
+					"toolName": "edit",
+					"path": "target.txt",
+					"answeredName": "allow-once",
+					"answeredOptionId": "choice-0",
+					"offered": [
+						"choice-0:allow-once:allow_once",
+						"choice-1:reject-once:allow_once"
+					]
+				},
+				{
+					"uiToolCallId": "pi-ui-697fa310-c46a-4518-a4c5-33e8ef7095ae",
+					"piToolCallId": "scripted-3-write",
+					"toolName": "write",
+					"path": "written.txt",
+					"answeredName": "allow-once",
+					"answeredOptionId": "choice-0",
+					"offered": [
+						"choice-0:allow-once:allow_once",
+						"choice-1:reject-once:allow_once"
+					]
+				}
+			],
+			"undecodable": [],
+			"piArgv": "[\"pi\",\"--no-session\",\"--no-context-files\",\"-ne\",\"-e\",\"<PI-GOVERNANCE-CHECKOUT>/dist/extension.js\",\"-e\",\"<PI-GOVERNANCE-CHECKOUT>/capture/scripted-provider.ts\",\"--provider\",\"pigov-capture\",\"--model\",\"pigov-capture/scripted\",\"--mode\",\"rpc\",\"--no-themes\"]",
+			"disk": {
+				"target.txt": "EDITED line under governance\n",
+				"written.txt": "CANARY-WRITE\n"
+			},
+			"capturedAt": "2026-09-22T02:28:51.658Z"
+		},
+		{
+			"name": "composed-deny-write",
+			"stopReason": "end_turn",
+			"error": null,
+			"records": 33,
+			"maxInFlightPermissions": 1,
+			"permissionRequests": [
+				{
+					"uiToolCallId": "pi-ui-5aa2a683-3689-4ec3-bd8b-fda8af38bd8a",
+					"piToolCallId": "scripted-0-read",
+					"toolName": "read",
+					"path": "target.txt",
+					"answeredName": "allow-once",
+					"answeredOptionId": "choice-0",
+					"offered": [
+						"choice-0:allow-once:allow_once",
+						"choice-1:reject-once:allow_once"
+					]
+				},
+				{
+					"uiToolCallId": "pi-ui-571135de-6a35-41da-b8e4-276cd5e8d54b",
+					"piToolCallId": "scripted-1-bash",
+					"toolName": "bash",
+					"path": "echo hello-from-bash",
+					"answeredName": "allow-once",
+					"answeredOptionId": "choice-0",
+					"offered": [
+						"choice-0:allow-once:allow_once",
+						"choice-1:reject-once:allow_once"
+					]
+				},
+				{
+					"uiToolCallId": "pi-ui-d752e9c6-5b8b-45cc-9f94-a3b1bfdea945",
+					"piToolCallId": "scripted-2-edit",
+					"toolName": "edit",
+					"path": "target.txt",
+					"answeredName": "allow-once",
+					"answeredOptionId": "choice-0",
+					"offered": [
+						"choice-0:allow-once:allow_once",
+						"choice-1:reject-once:allow_once"
+					]
+				},
+				{
+					"uiToolCallId": "pi-ui-9e53ed59-78be-4356-9d0e-886b8493cc25",
+					"piToolCallId": "scripted-3-write",
+					"toolName": "write",
+					"path": "written.txt",
+					"answeredName": "reject-once",
+					"answeredOptionId": "choice-1",
+					"offered": [
+						"choice-0:allow-once:allow_once",
+						"choice-1:reject-once:allow_once"
+					]
+				}
+			],
+			"undecodable": [],
+			"piArgv": "[\"pi\",\"--no-session\",\"--no-context-files\",\"-ne\",\"-e\",\"<PI-GOVERNANCE-CHECKOUT>/dist/extension.js\",\"-e\",\"<PI-GOVERNANCE-CHECKOUT>/capture/scripted-provider.ts\",\"--provider\",\"pigov-capture\",\"--model\",\"pigov-capture/scripted\",\"--mode\",\"rpc\",\"--no-themes\"]",
+			"disk": {
+				"target.txt": "EDITED line under governance\n",
+				"written.txt": null
+			},
+			"capturedAt": "2026-09-22T02:32:48.403Z"
+		},
+		{
+			"name": "composed-cancel-write",
+			"stopReason": "end_turn",
+			"error": null,
+			"records": 33,
+			"maxInFlightPermissions": 1,
+			"permissionRequests": [
+				{
+					"uiToolCallId": "pi-ui-454267ec-d0a5-41a0-8ab8-74051710ec74",
+					"piToolCallId": "scripted-0-read",
+					"toolName": "read",
+					"path": "target.txt",
+					"answeredName": "allow-once",
+					"answeredOptionId": "choice-0",
+					"offered": [
+						"choice-0:allow-once:allow_once",
+						"choice-1:reject-once:allow_once"
+					]
+				},
+				{
+					"uiToolCallId": "pi-ui-d1b1bb72-99b5-474c-a1c7-be0d63519d34",
+					"piToolCallId": "scripted-1-bash",
+					"toolName": "bash",
+					"path": "echo hello-from-bash",
+					"answeredName": "allow-once",
+					"answeredOptionId": "choice-0",
+					"offered": [
+						"choice-0:allow-once:allow_once",
+						"choice-1:reject-once:allow_once"
+					]
+				},
+				{
+					"uiToolCallId": "pi-ui-2120ee0a-d327-4c86-96fa-a52118d981a7",
+					"piToolCallId": "scripted-2-edit",
+					"toolName": "edit",
+					"path": "target.txt",
+					"answeredName": "allow-once",
+					"answeredOptionId": "choice-0",
+					"offered": [
+						"choice-0:allow-once:allow_once",
+						"choice-1:reject-once:allow_once"
+					]
+				},
+				{
+					"uiToolCallId": "pi-ui-bb6a2a52-5109-42e3-a507-beecc490df2a",
+					"piToolCallId": "scripted-3-write",
+					"toolName": "write",
+					"path": "written.txt",
+					"answeredName": "(cancel)",
+					"answeredOptionId": null,
+					"offered": [
+						"choice-0:allow-once:allow_once",
+						"choice-1:reject-once:allow_once"
+					]
+				}
+			],
+			"undecodable": [],
+			"piArgv": "[\"pi\",\"--no-session\",\"--no-context-files\",\"-ne\",\"-e\",\"<PI-GOVERNANCE-CHECKOUT>/dist/extension.js\",\"-e\",\"<PI-GOVERNANCE-CHECKOUT>/capture/scripted-provider.ts\",\"--provider\",\"pigov-capture\",\"--model\",\"pigov-capture/scripted\",\"--mode\",\"rpc\",\"--no-themes\"]",
+			"disk": {
+				"target.txt": "EDITED line under governance\n",
+				"written.txt": null
+			},
+			"capturedAt": "2026-09-22T02:42:15.935Z"
+		},
+		{
+			"name": "composed-negative-control",
+			"stopReason": "end_turn",
+			"error": null,
+			"records": 25,
+			"maxInFlightPermissions": 0,
+			"permissionRequests": [],
+			"undecodable": [],
+			"piArgv": "[\"pi\",\"--no-session\",\"--no-context-files\",\"-ne\",\"-e\",\"<PI-GOVERNANCE-CHECKOUT>/capture/scripted-provider.ts\",\"--provider\",\"pigov-capture\",\"--model\",\"pigov-capture/scripted\",\"--mode\",\"rpc\",\"--no-themes\"]",
+			"disk": {
+				"target.txt": "EDITED line under governance\n",
+				"written.txt": "CANARY-WRITE\n"
+			},
+			"capturedAt": "2026-09-22T02:42:37.435Z"
+		},
+		{
+			"name": "composed-parallel-allow",
+			"stopReason": "end_turn",
+			"error": null,
+			"records": 21,
+			"maxInFlightPermissions": 1,
+			"permissionRequests": [
+				{
+					"uiToolCallId": "pi-ui-c4aa4634-7bee-44ab-a5b7-633568a306bf",
+					"piToolCallId": "scripted-par-parallel-a.txt",
+					"toolName": "write",
+					"path": "parallel-a.txt",
+					"answeredName": "allow-once",
+					"answeredOptionId": "choice-0",
+					"offered": [
+						"choice-0:allow-once:allow_once",
+						"choice-1:reject-once:allow_once"
+					]
+				},
+				{
+					"uiToolCallId": "pi-ui-02476c51-6590-4db4-824a-49e452cae27a",
+					"piToolCallId": "scripted-par-parallel-b.txt",
+					"toolName": "write",
+					"path": "parallel-b.txt",
+					"answeredName": "allow-once",
+					"answeredOptionId": "choice-0",
+					"offered": [
+						"choice-0:allow-once:allow_once",
+						"choice-1:reject-once:allow_once"
+					]
+				}
+			],
+			"undecodable": [],
+			"piArgv": "[\"pi\",\"--no-session\",\"--no-context-files\",\"-ne\",\"-e\",\"<PI-GOVERNANCE-CHECKOUT>/dist/extension.js\",\"-e\",\"<CAPTURE-WORKDIR>/parallel-provider.ts\",\"--provider\",\"pigov-capture\",\"--model\",\"pigov-capture/scripted\",\"--mode\",\"rpc\",\"--no-themes\"]",
+			"disk": {
+				"parallel-a.txt": "A-CONTENT\n",
+				"parallel-b.txt": "B-CONTENT\n"
+			},
+			"capturedAt": "2026-09-22T02:37:21.060Z"
+		},
+		{
+			"name": "composed-parallel-deny-b",
+			"stopReason": "end_turn",
+			"error": null,
+			"records": 21,
+			"maxInFlightPermissions": 1,
+			"permissionRequests": [
+				{
+					"uiToolCallId": "pi-ui-76865916-f10f-4d0a-8e3c-1351ee53497e",
+					"piToolCallId": "scripted-par-parallel-a.txt",
+					"toolName": "write",
+					"path": "parallel-a.txt",
+					"answeredName": "allow-once",
+					"answeredOptionId": "choice-0",
+					"offered": [
+						"choice-0:allow-once:allow_once",
+						"choice-1:reject-once:allow_once"
+					]
+				},
+				{
+					"uiToolCallId": "pi-ui-698698c7-c472-43ff-a77c-d16261a334e7",
+					"piToolCallId": "scripted-par-parallel-b.txt",
+					"toolName": "write",
+					"path": "parallel-b.txt",
+					"answeredName": "reject-once",
+					"answeredOptionId": "choice-1",
+					"offered": [
+						"choice-0:allow-once:allow_once",
+						"choice-1:reject-once:allow_once"
+					]
+				}
+			],
+			"undecodable": [],
+			"piArgv": "[\"pi\",\"--no-session\",\"--no-context-files\",\"-ne\",\"-e\",\"<PI-GOVERNANCE-CHECKOUT>/dist/extension.js\",\"-e\",\"<CAPTURE-WORKDIR>/parallel-provider.ts\",\"--provider\",\"pigov-capture\",\"--model\",\"pigov-capture/scripted\",\"--mode\",\"rpc\",\"--no-themes\"]",
+			"disk": {
+				"parallel-a.txt": "A-CONTENT\n",
+				"parallel-b.txt": null
+			},
+			"capturedAt": "2026-09-22T02:36:48.575Z"
+		}
+	]
+}
