@@ -8,7 +8,7 @@
  * `mock-openai.mjs` on 127.0.0.1, and PI_OFFLINE=1 stops pi's startup network calls.
  *
  *   node test/live/capture.mjs --pi-acp <path to pi-acp dist/index.js> \
- *     --scenario write|four --answer allow|deny --gate on|off --out <dir>
+ *     --scenario write|four --answer allow|deny --gate on|off --out <dir> [--pi-command <launcher>]
  *
  * Writes <out>/<label>/frames.jsonl, model.jsonl and summary.json, and exits 0 when the
  * summary's `verdict` holds for the scenario.
@@ -81,8 +81,12 @@ writeFileSync(
 const launcherScript = fileURLToPath(new URL('./pi-launch.mjs', import.meta.url));
 // pi-acp spawns PI_ACP_PI_COMMAND as a command. POSIX runs the script by its shebang; Windows
 // cannot run a .mjs directly, so it gets a .cmd shim (pi-acp starts .cmd files through a shell).
+// --pi-command replaces this repo's launcher, e.g. with a host's own pi launcher that loads the gate.
+const piCommand = arg('pi-command', '');
 let launcher = launcherScript;
-if (process.platform === 'win32') {
+if (piCommand) {
+  launcher = resolve(piCommand);
+} else if (process.platform === 'win32') {
   launcher = join(base, 'pi-launch.cmd');
   writeFileSync(launcher, `@"${process.execPath}" "${launcherScript}" %*\r\n`);
 } else {
