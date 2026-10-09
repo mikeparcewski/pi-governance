@@ -1,0 +1,79 @@
+{
+  "label": "write-gate-deny",
+  "takenAt": "2026-10-09T21:30:22.096Z",
+  "versions": {
+    "pi": "0.84.2",
+    "piAcp": "0.0.32",
+    "piGovernance": "0.1.0",
+    "node": "v26.0.0"
+  },
+  "scenario": "write",
+  "gate": true,
+  "answer": "deny",
+  "stopReason": "end_turn",
+  "error": null,
+  "expectedTools": [
+    "write"
+  ],
+  "askedTools": [
+    "write"
+  ],
+  "permissions": [
+    {
+      "requestSeq": 11,
+      "answerSeq": 12,
+      "envelope": {
+        "pi-governance": 1,
+        "toolCallId": "call_mock_1",
+        "toolName": "write",
+        "input": {
+          "path": "/var/folders/h9/54gktm4j4kxfd0r55wwh2phr0000gn/T/pi-gov-jNMnKX/work/governed-write.txt",
+          "content": "written\n"
+        }
+      },
+      "title": "write",
+      "rawTitle": "write",
+      "method": "confirm",
+      "answered": "reject"
+    }
+  ],
+  "perCall": [
+    {
+      "toolCallId": "call_mock_1",
+      "statuses": [
+        {
+          "seq": 9,
+          "status": "pending"
+        },
+        {
+          "seq": 10,
+          "status": "in_progress"
+        },
+        {
+          "seq": 13,
+          "status": "failed"
+        }
+      ],
+      "permission": {
+        "requestSeq": 11,
+        "answerSeq": 12,
+        "tool": "write",
+        "answered": "reject"
+      }
+    }
+  ],
+  "files": {
+    "governed-write.txt": false,
+    "bash-out.txt": false,
+    "seed.txt": "alpha\n"
+  },
+  "verdict": {
+    "allAsked": true,
+    "requestsNameTheTool": true,
+    "noCompletionBeforeAnswer": true,
+    "statusesMatchAnswer": true,
+    "sideEffectsMatchAnswer": true
+  },
+  "ok": true,
+  "stderrTail": ""
+}
