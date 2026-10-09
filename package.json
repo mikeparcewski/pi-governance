@@ -1,0 +1,26 @@
+{
+  "name": "pi-governance",
+  "version": "0.1.0",
+  "description": "A pi extension that turns every pi tool call into a permission request to the ACP host before it runs.",
+  "type": "module",
+  "main": "extensions/pi-governance.js",
+  "exports": {
+    ".": "./extensions/pi-governance.js",
+    "./extension": "./extensions/pi-governance.js",
+    "./package.json": "./package.json"
+  },
+  "keywords": ["pi-package", "pi", "acp", "agent-client-protocol", "governance"],
+  "pi": {
+    "extensions": ["./extensions"]
+  },
+  "files": ["extensions/", "README.md", "LICENSE"],
+  "engines": { "node": ">=22.0.0" },
+  "scripts": {
+    "test": "node --test test/*.test.mjs"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mikeparcewski/pi-governance.git"
+  }
+}

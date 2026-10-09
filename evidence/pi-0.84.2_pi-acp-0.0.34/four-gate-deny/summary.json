@@ -1,0 +1,208 @@
+{
+  "label": "four-gate-deny",
+  "takenAt": "2026-10-09T21:31:18.392Z",
+  "versions": {
+    "pi": "0.84.2",
+    "piAcp": "0.0.34",
+    "piGovernance": "0.1.0",
+    "node": "v26.0.0"
+  },
+  "scenario": "four",
+  "gate": true,
+  "answer": "deny",
+  "stopReason": "end_turn",
+  "error": null,
+  "expectedTools": [
+    "read",
+    "bash",
+    "edit",
+    "write"
+  ],
+  "askedTools": [
+    "read",
+    "bash",
+    "edit",
+    "write"
+  ],
+  "permissions": [
+    {
+      "requestSeq": 12,
+      "answerSeq": 13,
+      "envelope": {
+        "pi-governance": 1,
+        "toolCallId": "call_mock_1",
+        "toolName": "read",
+        "input": {
+          "path": "/var/folders/h9/54gktm4j4kxfd0r55wwh2phr0000gn/T/pi-gov-M9LIQI/work/seed.txt"
+        }
+      },
+      "title": "read",
+      "rawTitle": "read",
+      "method": "confirm",
+      "answered": "reject"
+    },
+    {
+      "requestSeq": 17,
+      "answerSeq": 18,
+      "envelope": {
+        "pi-governance": 1,
+        "toolCallId": "call_mock_2",
+        "toolName": "bash",
+        "input": {
+          "command": "echo hi > /var/folders/h9/54gktm4j4kxfd0r55wwh2phr0000gn/T/pi-gov-M9LIQI/work/bash-out.txt"
+        }
+      },
+      "title": "bash",
+      "rawTitle": "bash",
+      "method": "confirm",
+      "answered": "reject"
+    },
+    {
+      "requestSeq": 22,
+      "answerSeq": 23,
+      "envelope": {
+        "pi-governance": 1,
+        "toolCallId": "call_mock_3",
+        "toolName": "edit",
+        "input": {
+          "path": "/var/folders/h9/54gktm4j4kxfd0r55wwh2phr0000gn/T/pi-gov-M9LIQI/work/seed.txt",
+          "edits": [
+            {
+              "oldText": "alpha",
+              "newText": "beta"
+            }
+          ]
+        }
+      },
+      "title": "edit",
+      "rawTitle": "edit",
+      "method": "confirm",
+      "answered": "reject"
+    },
+    {
+      "requestSeq": 27,
+      "answerSeq": 28,
+      "envelope": {
+        "pi-governance": 1,
+        "toolCallId": "call_mock_4",
+        "toolName": "write",
+        "input": {
+          "path": "/var/folders/h9/54gktm4j4kxfd0r55wwh2phr0000gn/T/pi-gov-M9LIQI/work/governed-write.txt",
+          "content": "written\n"
+        }
+      },
+      "title": "write",
+      "rawTitle": "write",
+      "method": "confirm",
+      "answered": "reject"
+    }
+  ],
+  "perCall": [
+    {
+      "toolCallId": "call_mock_1",
+      "statuses": [
+        {
+          "seq": 10,
+          "status": "pending"
+        },
+        {
+          "seq": 11,
+          "status": "in_progress"
+        },
+        {
+          "seq": 14,
+          "status": "failed"
+        }
+      ],
+      "permission": {
+        "requestSeq": 12,
+        "answerSeq": 13,
+        "tool": "read",
+        "answered": "reject"
+      }
+    },
+    {
+      "toolCallId": "call_mock_2",
+      "statuses": [
+        {
+          "seq": 15,
+          "status": "pending"
+        },
+        {
+          "seq": 16,
+          "status": "in_progress"
+        },
+        {
+          "seq": 19,
+          "status": "failed"
+        }
+      ],
+      "permission": {
+        "requestSeq": 17,
+        "answerSeq": 18,
+        "tool": "bash",
+        "answered": "reject"
+      }
+    },
+    {
+      "toolCallId": "call_mock_3",
+      "statuses": [
+        {
+          "seq": 20,
+          "status": "pending"
+        },
+        {
+          "seq": 21,
+          "status": "in_progress"
+        },
+        {
+          "seq": 24,
+          "status": "failed"
+        }
+      ],
+      "permission": {
+        "requestSeq": 22,
+        "answerSeq": 23,
+        "tool": "edit",
+        "answered": "reject"
+      }
+    },
+    {
+      "toolCallId": "call_mock_4",
+      "statuses": [
+        {
+          "seq": 25,
+          "status": "pending"
+        },
+        {
+          "seq": 26,
+          "status": "in_progress"
+        },
+        {
+          "seq": 29,
+          "status": "failed"
+        }
+      ],
+      "permission": {
+        "requestSeq": 27,
+        "answerSeq": 28,
+        "tool": "write",
+        "answered": "reject"
+      }
+    }
+  ],
+  "files": {
+    "governed-write.txt": false,
+    "bash-out.txt": false,
+    "seed.txt": "alpha\n"
+  },
+  "verdict": {
+    "allAsked": true,
+    "requestsNameTheTool": true,
+    "noCompletionBeforeAnswer": true,
+    "statusesMatchAnswer": true,
+    "sideEffectsMatchAnswer": true
+  },
+  "ok": true,
+  "stderrTail": ""
+}

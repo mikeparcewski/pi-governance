@@ -1,0 +1,50 @@
+{
+  "label": "write-nogate-deny",
+  "takenAt": "2026-10-09T21:22:02.434Z",
+  "versions": {
+    "pi": "0.84.2",
+    "piAcp": "0.0.32",
+    "piGovernance": "0.1.0",
+    "node": "v26.0.0"
+  },
+  "scenario": "write",
+  "gate": false,
+  "answer": "deny",
+  "stopReason": "end_turn",
+  "error": null,
+  "expectedTools": [
+    "write"
+  ],
+  "askedTools": [],
+  "permissions": [],
+  "perCall": [
+    {
+      "toolCallId": "call_mock_1",
+      "statuses": [
+        {
+          "seq": 9,
+          "status": "pending"
+        },
+        {
+          "seq": 10,
+          "status": "in_progress"
+        },
+        {
+          "seq": 11,
+          "status": "completed"
+        }
+      ]
+    }
+  ],
+  "files": {
+    "governed-write.txt": true,
+    "bash-out.txt": false,
+    "seed.txt": "alpha\n"
+  },
+  "verdict": {
+    "baselineNoPermissionRequests": true,
+    "baselineWriteHappened": true
+  },
+  "ok": true,
+  "stderrTail": ""
+}
