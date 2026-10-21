@@ -3,15 +3,46 @@ on:
   pull_request:
   push:
     branches: [main]
+env:
+  # UNVERIFIED when written (no network): the pi npm package name. The "Verify pi" step fails the
+  # leg if the install is not exactly 1.1.0, so a wrong name cannot pass silently.
+  PI_NPM_PACKAGE: '@earendil-works/pi-coding-agent'
+  PI_VERSION: '1.1.0'
 jobs:
+  # Windows: lint and the unit tests only. The tmux suite needs tmux, so it is never run (nor
+  # skipped under CI) there.
   unit:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm run lint
+      - run: npm run test:unit
+
+  # Ubuntu and macOS: tests 2-6 run live. CI is set by GitHub, so a missing pi or tmux fails.
+  live:
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        os: [ubuntu-latest, macos-latest]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - run: npm test
+      - name: Install tmux
+        run: |
+          if [ "$RUNNER_OS" = "macOS" ]; then brew install tmux; else sudo apt-get update && sudo apt-get install -y tmux; fi
+      - name: Install pi (exact version)
+        run: npm install -g "${PI_NPM_PACKAGE}@${PI_VERSION}"
+      - name: Verify pi and tmux
+        run: |
+          tmux -V
+          got="$(pi --version)"
+          echo "pi --version: $got"
+          case "$got" in *"$PI_VERSION"*) ;; *) echo "::error::expected pi $PI_VERSION"; exit 1 ;; esac
+      - run: npm run lint
+      - run: npm run test:unit
+      - run: npm run test:live

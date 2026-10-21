@@ -34,9 +34,10 @@ jobs:
       - name: Upgrade npm (provenance-capable)
         run: npm install -g npm@12
 
-      # No dependencies and no build: the tests run on node:test.
+      # No dependencies and no build: the tests run on node:test. The tmux suite needs pi and tmux
+      # and is required green on the PR (test.yml), so the release job runs lint and unit tests.
       - name: Test
-        run: npm test
+        run: npm run lint && npm run test:unit
 
       - name: Tag and manifest must agree
         id: version

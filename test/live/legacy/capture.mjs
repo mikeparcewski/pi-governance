@@ -19,7 +19,7 @@ import { join, resolve } from 'node:path';
 import { tmpdir } from 'node:os';
 import { fileURLToPath } from 'node:url';
 import { startMock } from './mock-openai.mjs';
-import { ENVELOPE_KEY } from '../../extensions/pi-governance.js';
+const ENVELOPE_KEY = 'pi-governance'; // the 0.1.x v1 envelope marker
 
 const arg = (name, dflt) => {
   const i = process.argv.indexOf(`--${name}`);
@@ -95,7 +95,7 @@ if (piCommand) {
 const versions = {
   pi: execFileSync(process.env.PI_GOV_PI_BINARY || 'pi', ['--version'], { encoding: 'utf8', env: { ...process.env, HOME: home, PI_CODING_AGENT_DIR: agentDir, PI_OFFLINE: '1' } }).trim(),
   piAcp: JSON.parse(readFileSync(resolve(piAcp, '..', '..', 'package.json'), 'utf8')).version,
-  piGovernance: JSON.parse(readFileSync(new URL('../../package.json', import.meta.url), 'utf8')).version,
+  piGovernance: JSON.parse(readFileSync(new URL('../../../package.json', import.meta.url), 'utf8')).version,
   node: process.version,
 };
 
