@@ -9,7 +9,7 @@ import { spawn } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
 // PI_GOV_GATE_PATH points at a different gate file, used to check that a broken gate fails the capture.
-const gate = process.env.PI_GOV_GATE_PATH || fileURLToPath(new URL('../../extensions/pi-governance.js', import.meta.url));
+const gate = process.env.PI_GOV_GATE_PATH || fileURLToPath(new URL('../../../extensions/pi-governance.js', import.meta.url));
 const pre = process.env.PI_GOV_GATE === '1' ? ['--no-extensions', '-e', gate] : ['--no-extensions'];
 const child = spawn(process.env.PI_GOV_PI_BINARY || 'pi', [...pre, ...process.argv.slice(2)], {
   stdio: 'inherit',

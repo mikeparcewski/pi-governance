@@ -1,7 +1,7 @@
 {
   "name": "pi-governance",
-  "version": "0.1.0",
-  "description": "A pi extension that turns every pi tool call into a permission request to the ACP host before it runs.",
+  "version": "0.2.0",
+  "description": "A pi extension that gives pi an always-ask permission prompt for every tool call, and routes its shell through the host's guard.",
   "type": "module",
   "main": "extensions/pi-governance.js",
   "exports": {
@@ -9,14 +9,30 @@
     "./extension": "./extensions/pi-governance.js",
     "./package.json": "./package.json"
   },
-  "keywords": ["pi-package", "pi", "acp", "agent-client-protocol", "governance"],
+  "keywords": [
+    "pi-package",
+    "pi",
+    "governance",
+    "permissions"
+  ],
   "pi": {
-    "extensions": ["./extensions"]
+    "extensions": [
+      "./extensions"
+    ]
   },
-  "files": ["extensions/", "README.md", "LICENSE"],
-  "engines": { "node": ">=22.0.0" },
+  "files": [
+    "extensions/",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=22.0.0"
+  },
   "scripts": {
-    "test": "node --test test/*.test.mjs"
+    "lint": "node scripts/lint.mjs",
+    "test:unit": "node --test test/*.test.mjs",
+    "test:live": "node --test test/live/*.test.mjs",
+    "test": "npm run lint && npm run test:unit && npm run test:live"
   },
   "license": "MIT",
   "repository": {
